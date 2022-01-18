@@ -16,7 +16,7 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route index element={<App />} />
         <Route path="shortener/new" element={<NewShortener />} />
-        <Route path="shortener/:shortId" element={<AccessShortener />} />
+        <Route path="/:shortId" element={<AccessShortener />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
