@@ -1,6 +1,22 @@
 import Header from "../components/header";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useState } from 'react';
 
 export default function NewShortener() {
+    const validationSchema = Yup
+        .object()
+        .required('URL required')
+        .shape({
+            url: Yup.string().matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+                'Enter a valid URL')
+        });
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
+    const onSubmit = data => {
+        setUrl(s => data?.url);
+    };
+    const [url, setUrl] = useState('');
     return (
         <>
             <Header />
@@ -14,15 +30,13 @@ export default function NewShortener() {
                         width: '80%',
                         margin: "auto"
                     }}
-                    onSubmit={e => {
-                        e.preventDefault();
-                        console.log(e.target.url.value)
-                    }}
+                    onSubmit={handleSubmit(onSubmit)}
                 >
                     <label htmlFor="url">
-                        Please Enter a valid URL
+                        Please enter a valid URL
                     </label>
-                    <input name="url" id="url" type="url"></input>
+                    <input name="url" id="url" {...register('url')} ></input>
+                    {errors?.url && errors.url?.message}
                     <button
                         style={{
                             width: '5em',
@@ -33,6 +47,10 @@ export default function NewShortener() {
                         SUBMIT
                     </button>
                 </form>
+                {url && (<div>
+                    <p>Submitted URL : {url}</p>
+                    <p>Shortened URL : {' '}</p>
+                </div>)}
             </div>
         </>
     );
