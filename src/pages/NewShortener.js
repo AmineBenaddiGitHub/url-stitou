@@ -23,6 +23,7 @@ export default function NewShortener() {
             <div style={{
                 width: "100%"
             }}>
+                <h1 style={{ textAlign: "center" }}>Welcome to the URL Shortener</h1>
                 <form
                     style={{
                         display: 'flex',
@@ -39,7 +40,6 @@ export default function NewShortener() {
                     {errors?.url && errors.url?.message}
                     <button
                         style={{
-                            width: '5em',
                             marginTop: '0.5em'
                         }}
                         type="submit"
@@ -47,9 +47,14 @@ export default function NewShortener() {
                         SUBMIT
                     </button>
                 </form>
-                {url && (<div>
-                    <p>Submitted URL : {url}</p>
-                    <p>Shortened URL : {' '}</p>
+                {url && (<div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <p style={{ margin: '0.1em' }}>Submitted URL : {url}</p>
+                    <p style={{ margin: '0.1em' }}>Shortened URL : {' '}</p>
                 </div>)}
             </div>
         </>

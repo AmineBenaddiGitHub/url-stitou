@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NewShortener from './pages/NewShortener';
@@ -13,11 +12,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route index element={<App />} />
+        <Route path="/" element={<NewShortener />} />
+        <Route index element={<NewShortener />} />
         <Route path="shortener/new" element={<NewShortener />} />
         <Route path="/:shortId" element={<AccessShortener />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/not-found" element={<NotFound />} />
       </Routes>
     </Router>
   </React.StrictMode>,

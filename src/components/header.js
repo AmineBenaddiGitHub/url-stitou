@@ -15,7 +15,6 @@ export default function Header() {
                     padding: '1em'
                 }}>
                     <Link to="/">Home</Link>
-                    <Link to="/shortener/new">Shorten URL</Link>
                 </ul>
             </nav>
         </header>
