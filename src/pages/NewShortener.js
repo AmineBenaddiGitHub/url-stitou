@@ -75,7 +75,7 @@ export default function NewShortener() {
                     alignItems: 'center'
                 }}>
                     <p style={{ margin: '0.1em' }}>Submitted URL : {url}</p>
-                    <p style={{ margin: '0.1em' }}>Shortened URL : {short}</p>
+                    <p style={{ margin: '0.1em' }}>Shortened URL : {short === 'Loading ...' ? 'Loading' : `https://tiny-url.pages.dev/${short}`}</p>
                 </div>)}
             </div>
         </>
