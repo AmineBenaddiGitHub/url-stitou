@@ -9,8 +9,7 @@ export default function NewShortener() {
         .object()
         .required('URL required')
         .shape({
-            url: Yup.string().matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-                'Enter a valid URL')
+            url: Yup.string().url('Please enter a valid URL')
         });
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
     const onSubmit = data => {
