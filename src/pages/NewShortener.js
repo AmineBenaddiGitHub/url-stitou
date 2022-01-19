@@ -14,9 +14,30 @@ export default function NewShortener() {
         });
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
     const onSubmit = data => {
-        setUrl(s => data?.url);
+        setUrl(data?.url);
+        setShort("Loading ...");
+        fetch('https://tiny-url-functions.aminbe.workers.dev/shorten', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors',
+            body: JSON.stringify({ url: data?.url })
+        })
+            .then(res => {
+                if (res.status === 200) return res.json();
+                return { errored: true };
+            })
+            .then(data => {
+                if (!data?.errored) setShort(data?.shortId);
+                else setShort("Oops, didn't work ... ")
+            }).catch(() => setShort("Oops, didn't work ... "));
+
     };
     const [url, setUrl] = useState('');
+    const [short, setShort] = useState('');
+
     return (
         <>
             <Header />
@@ -54,7 +75,7 @@ export default function NewShortener() {
                     alignItems: 'center'
                 }}>
                     <p style={{ margin: '0.1em' }}>Submitted URL : {url}</p>
-                    <p style={{ margin: '0.1em' }}>Shortened URL : {' '}</p>
+                    <p style={{ margin: '0.1em' }}>Shortened URL : {short}</p>
                 </div>)}
             </div>
         </>
