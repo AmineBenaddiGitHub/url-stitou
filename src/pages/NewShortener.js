@@ -36,7 +36,6 @@ export default function NewShortener() {
     };
     const [url, setUrl] = useState('');
     const [short, setShort] = useState('');
-
     return (
         <>
             <Header />
@@ -66,9 +65,15 @@ export default function NewShortener() {
                                 height: '4em',
                                 backgroundColor: '#1ed760',
                                 border: '1px solid #1ed760',
-                                borderRadius: '1em'
+                                borderRadius: '1em',
                             }}
                             type="submit"
+                            onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = '#1db954';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = '#1ed760';
+                            }}
                         >
                             SUBMIT
                         </button>
