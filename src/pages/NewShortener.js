@@ -58,14 +58,21 @@ export default function NewShortener() {
                     </label>
                     <input name="url" id="url" {...register('url')} ></input>
                     {errors?.url && errors.url?.message}
-                    <button
-                        style={{
-                            marginTop: '0.5em'
-                        }}
-                        type="submit"
-                    >
-                        SUBMIT
-                    </button>
+                    <div style={{ margin: 'auto' }}>
+                        <button
+                            style={{
+                                marginTop: '0.5em',
+                                width: '10em',
+                                height: '4em',
+                                backgroundColor: '#1ed760',
+                                border: '1px solid #1ed760',
+                                borderRadius: '1em'
+                            }}
+                            type="submit"
+                        >
+                            SUBMIT
+                        </button>
+                    </div>
                 </form>
                 {url && (<div style={{
                     display: 'flex',
@@ -73,7 +80,6 @@ export default function NewShortener() {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <p style={{ margin: '0.1em' }}>Submitted URL : {url}</p>
                     <p style={{ margin: '0.1em' }}>Shortened URL : {short === 'Loading ...' ? 'Loading' : `https://url-stitou.pages.dev/${short}`}</p>
                 </div>)}
             </div>
