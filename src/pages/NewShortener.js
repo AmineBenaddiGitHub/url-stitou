@@ -61,7 +61,12 @@ export default function NewShortener() {
                         onChange={() => {
                             setCopy('Copy to clipboard');
                         }}
-                        required></input>
+                        required
+                        style={{
+                            height: '2em',
+                            borderRadius: '0.5em',
+                            border: '1px solid grey'
+                        }}></input>
                     {errors?.url && errors.url?.message}
                     <div style={{ margin: 'auto' }}>
                         <button
