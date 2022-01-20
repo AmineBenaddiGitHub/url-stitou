@@ -13,7 +13,6 @@ export default function NewShortener() {
         });
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
     const onSubmit = data => {
-        setUrl(data?.url);
         setShort("Loading ...");
         fetch('https://url-stitou-functions.aminbe.workers.dev/shorten', {
             method: 'POST',
@@ -34,7 +33,6 @@ export default function NewShortener() {
             }).catch(() => setShort("ERROR"));
 
     };
-    const [url, setUrl] = useState('');
     const [short, setShort] = useState('');
     const [copy, setCopy] = useState('Copy to clipboard');
     return (
@@ -61,7 +59,6 @@ export default function NewShortener() {
                         id="url"
                         {...register('url')}
                         onChange={() => {
-                            setUrl('');
                             setCopy('Copy to clipboard');
                         }}></input>
                     {errors?.url && errors.url?.message}
@@ -87,7 +84,7 @@ export default function NewShortener() {
                         </button>
                     </div>
                 </form>
-                {url && url !== 'ERROR' && (<div style={{
+                {short && short !== 'ERROR' && (<div style={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -116,6 +113,7 @@ export default function NewShortener() {
                         </button>
                     )}
                 </div>)}
+                {short === "ERROR" && (<p>Error, please try later</p>)}
             </div>
         </>
     );
