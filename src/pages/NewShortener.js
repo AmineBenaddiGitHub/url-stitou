@@ -36,6 +36,7 @@ export default function NewShortener() {
     };
     const [url, setUrl] = useState('');
     const [short, setShort] = useState('');
+    const [copy, setCopy] = useState('Copy in clipboard');
     return (
         <>
             <Header />
@@ -86,6 +87,24 @@ export default function NewShortener() {
                     alignItems: 'center'
                 }}>
                     <p style={{ margin: '0.1em' }}>Shortened URL : {short === 'Loading ...' ? 'Loading' : `https://url-stitou.pages.dev/${short}`}</p>
+                    {short !== 'Loading ...' && (
+                        <button
+                            style={{
+                                marginTop: '0.5em',
+                                width: '5em',
+                                height: '3em',
+                                backgroundColor: '#eaa9af',
+                                border: '1px solid #eaa9af',
+                                borderRadius: '1em',
+                            }}
+                            onClick={() => {
+                                navigator.clipboard.writeText(`https://url-stitou.pages.dev/${short}`)
+                                    .then(() => {
+                                        setCopy('Copied !')
+                                    });
+                            }}>{copy}
+                        </button>
+                    )}
                 </div>)}
             </div>
         </>

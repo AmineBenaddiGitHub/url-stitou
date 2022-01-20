@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 
 export default function AccessShortener() {
     const { shortId } = useParams();
-    const [url, setUrl] = useState('');
+    const [link, setLink] = useState('');
+    const [nbAccess, setNbAccess] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     useEffect(() => {
+        setLoading(true);
         fetch(`https://tiny-url-functions.aminbe.workers.dev/access?shortId=${shortId}`, {
             method: 'GET',
             headers: {
@@ -17,15 +21,32 @@ export default function AccessShortener() {
             if (res.status === 200) return res.json();
             return { errored: true };
         }).then(data => {
-            if (!data?.errored) window.location.replace(data?.url);
-            else setUrl("Oops, didn't work ... ")
-        }).catch(() => setUrl("Oops, didn't work ... "));
+            setLoading(false);
+            const { url, times, errored } = data;
+            if (!errored && url !== '') {
+                setNbAccess(times);
+                setLink(url)
+                setTimeout(() => {
+                    window.location.replace(url);
+                }, 3000);
+            } else {
+                setError(true);
+            }
+        }).catch(() => {
+            setLoading(false);
+            setError(true);
+        });
     }, [shortId]);
     return (
         <>
             <Header />
-            <div>Will Access Shortly to the website</div>
-            {url && <p>{url}</p>}
+            {loading && <div>Will Access Shortly to the website</div>}
+            {error && <div>Sorry, url-stitou didn't work this time</div>}
+            {!error && !loading && (<>
+                <p>Number of access times : {nbAccess}</p>
+                <p>You will access to this URL : {link}</p>
+                <p>You will be redirected in 3 seconds</p>
+            </>)}
         </>
     );
 }
