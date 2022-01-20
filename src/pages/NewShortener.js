@@ -108,7 +108,7 @@ export default function NewShortener() {
                                         setCopy('Copied !');
                                         setTimeout(() => {
                                             setCopy('Copy to clipboard');
-                                        }, 3000);
+                                        }, 1000);
                                     });
                             }}>{copy}
                         </button>

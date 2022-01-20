@@ -28,7 +28,7 @@ export default function AccessShortener() {
                 setLink(url)
                 setTimeout(() => {
                     window.location.replace(url);
-                }, 3000);
+                }, 2000);
             } else {
                 setError(true);
             }
@@ -45,7 +45,7 @@ export default function AccessShortener() {
             {!error && !loading && (<>
                 <p>Number of access times : {nbAccess}</p>
                 <p>You will access to this URL : {link}</p>
-                <p>You will be redirected in 3 seconds</p>
+                <p>You will be redirected in 2 seconds</p>
             </>)}
         </>
     );
