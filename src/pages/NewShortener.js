@@ -113,7 +113,12 @@ export default function NewShortener() {
                         </button>
                     )}
                 </div>)}
-                {short === "ERROR" && (<p>Error, please try later</p>)}
+                {short === "ERROR" && (<p style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>Error, please try later</p>)}
             </div>
         </>
     );
