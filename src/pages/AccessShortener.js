@@ -10,7 +10,7 @@ export default function AccessShortener() {
     const [error, setError] = useState(false);
     useEffect(() => {
         setLoading(true);
-        fetch(`https://tiny-url-functions.aminbe.workers.dev/access?shortId=${shortId}`, {
+        fetch(`https://url-stitou-functions.aminbe.workers.dev/access?shortId=${shortId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

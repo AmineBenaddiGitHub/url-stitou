@@ -15,7 +15,7 @@ export default function NewShortener() {
     const onSubmit = data => {
         setUrl(data?.url);
         setShort("Loading ...");
-        fetch('https://tiny-url-functions.aminbe.workers.dev/shorten', {
+        fetch('https://url-stitou-functions.aminbe.workers.dev/shorten', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -30,13 +30,13 @@ export default function NewShortener() {
             })
             .then(data => {
                 if (!data?.errored) setShort(data?.shortId);
-                else setShort("Oops, didn't work ... ")
-            }).catch(() => setShort("Oops, didn't work ... "));
+                else setShort("ERROR")
+            }).catch(() => setShort("ERROR"));
 
     };
     const [url, setUrl] = useState('');
     const [short, setShort] = useState('');
-    const [copy, setCopy] = useState('Copy in clipboard');
+    const [copy, setCopy] = useState('Copy to clipboard');
     return (
         <>
             <Header />
@@ -56,7 +56,13 @@ export default function NewShortener() {
                     <label htmlFor="url">
                         Please enter a valid URL
                     </label>
-                    <input name="url" id="url" {...register('url')} ></input>
+                    <input
+                        name="url"
+                        id="url"
+                        {...register('url')}
+                        onChange={() => {
+                            setUrl('');
+                        }}></input>
                     {errors?.url && errors.url?.message}
                     <div style={{ margin: 'auto' }}>
                         <button
@@ -80,7 +86,7 @@ export default function NewShortener() {
                         </button>
                     </div>
                 </form>
-                {url && (<div style={{
+                {url && url !== 'ERROR' && (<div style={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -100,7 +106,10 @@ export default function NewShortener() {
                             onClick={() => {
                                 navigator.clipboard.writeText(`https://url-stitou.pages.dev/${short}`)
                                     .then(() => {
-                                        setCopy('Copied !')
+                                        setCopy('Copied !');
+                                        setTimeout(() => {
+                                            setCopy('Copy to clipboard');
+                                        }, 3000);
                                     });
                             }}>{copy}
                         </button>
