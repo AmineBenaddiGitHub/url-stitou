@@ -60,7 +60,8 @@ export default function NewShortener() {
                         {...register('url')}
                         onChange={() => {
                             setCopy('Copy to clipboard');
-                        }}></input>
+                        }}
+                        required></input>
                     {errors?.url && errors.url?.message}
                     <div style={{ margin: 'auto' }}>
                         <button
