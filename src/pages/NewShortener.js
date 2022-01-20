@@ -62,6 +62,7 @@ export default function NewShortener() {
                         {...register('url')}
                         onChange={() => {
                             setUrl('');
+                            setCopy('Copy to clipboard');
                         }}></input>
                     {errors?.url && errors.url?.message}
                     <div style={{ margin: 'auto' }}>
