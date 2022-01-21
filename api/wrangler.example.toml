@@ -1,0 +1,9 @@
+# In your project, rename wrangler.example.toml and fill account_id
+name = "url-stitou-functions"
+type = "webpack"
+account_id = "{TO_BE_FILLED_WITH_ACCOUNT_IT}"
+
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2022-01-19"
