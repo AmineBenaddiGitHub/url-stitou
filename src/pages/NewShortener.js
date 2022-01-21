@@ -1,4 +1,3 @@
-import Header from "../components/header";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -37,7 +36,6 @@ export default function NewShortener() {
     const [copy, setCopy] = useState('Copy to clipboard');
     return (
         <>
-            <Header />
             <div style={{
                 width: "100%"
             }}>
@@ -72,7 +70,7 @@ export default function NewShortener() {
                         <button
                             style={{
                                 marginTop: '0.5em',
-                                width: '10em',
+                                width: '18em',
                                 height: '4em',
                                 backgroundColor: '#1ed760',
                                 border: '1px solid #1ed760',
@@ -96,13 +94,13 @@ export default function NewShortener() {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <p style={{ margin: '0.1em' }}>Shortened URL : {short === 'Loading ...' ? 'Loading' : `https://url-stitou.pages.dev/${short}`}</p>
+                    <p style={{ margin: '0.1em', textAlign: "center" }}>Shortened URL : {short === 'Loading ...' ? 'Loading' : `https://url-stitou.pages.dev/${short}`}</p>
                     {short !== 'Loading ...' && (
                         <button
                             style={{
                                 marginTop: '0.5em',
-                                width: '5em',
-                                height: '3em',
+                                width: '10em',
+                                height: '4em',
                                 backgroundColor: '#eaa9af',
                                 border: '1px solid #eaa9af',
                                 borderRadius: '1em',
@@ -125,6 +123,58 @@ export default function NewShortener() {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>Error, please try later</p>)}
+                <div
+                    style={{
+                        width: "100%",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        margin: "1em 0"
+                    }}>
+                    <a
+                        href="https://github.com/AmineBenaddiGitHub/tiny-url"
+                        style={{
+                            textDecoration: 'none',
+                            color: 'black',
+                            borderRadius: '10px',
+                            width: '10em',
+                            backgroundColor: 'lightgray',
+                            textAlign: 'center',
+                            padding: '1.5em 0.5em',
+                            margin: '0.25em',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = 'silver';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = 'lightgray';
+                        }}
+                    >
+                        Front-end repository
+                    </a>
+                    <a
+                        href="https://github.com/AmineBenaddiGitHub/tiny-url-functions"
+                        style={{
+                            textDecoration: 'none',
+                            color: 'black',
+                            borderRadius: '10px',
+                            width: '10em',
+                            backgroundColor: 'lightgray',
+                            textAlign: 'center',
+                            padding: '1.5em 0.5em',
+                            margin: '0.25em',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = 'silver';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = 'lightgray';
+                        }}
+                    >
+                        Back-end repository
+                    </a>
+                </div>
             </div>
         </>
     );

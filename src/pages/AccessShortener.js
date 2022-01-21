@@ -1,4 +1,3 @@
-import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -39,7 +38,6 @@ export default function AccessShortener() {
     }, [shortId]);
     return (
         <>
-            <Header />
             {loading && <div>Will Access Shortly to the website</div>}
             {error && <div>Sorry, url-stitou didn't work this time</div>}
             {!error && !loading && (<>
