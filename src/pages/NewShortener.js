@@ -130,7 +130,7 @@ export default function NewShortener() {
                         display: "flex",
                         justifyContent: 'center',
                         alignItems: 'center',
-                        margin: "1em 0"
+                        margin: "15em 0 1em 0"
                     }}>
                     <a href="https://github.com/AmineBenaddiGitHub/tiny-url" target="_blank" rel="noreferrer">
                         <img src={OctoCat} alt='octo cat' />
