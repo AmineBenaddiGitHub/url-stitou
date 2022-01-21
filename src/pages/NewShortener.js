@@ -85,7 +85,7 @@ export default function NewShortener() {
                                 e.target.style.backgroundColor = '#1ed760';
                             }}
                         >
-                            SUBMIT
+                            SHORTEN
                         </button>
                     </div>
                 </form>
