@@ -132,7 +132,7 @@ export default function NewShortener() {
                         alignItems: 'center',
                         margin: "1em 0"
                     }}>
-                    <a href="https://github.com/AmineBenaddiGitHub/tiny-url" target="_blank">
+                    <a href="https://github.com/AmineBenaddiGitHub/tiny-url" target="_blank" rel="noreferrer">
                         <img src={OctoCat} alt='octo cat' />
                     </a>
                 </div>
