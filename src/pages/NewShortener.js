@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import OctoCat from '../assets/GitHubIcon.png';
 
 export default function NewShortener() {
     const validationSchema = Yup
@@ -127,52 +128,12 @@ export default function NewShortener() {
                     style={{
                         width: "100%",
                         display: "flex",
-                        flexWrap: "wrap",
                         justifyContent: 'center',
                         alignItems: 'center',
                         margin: "1em 0"
                     }}>
-                    <a
-                        href="https://github.com/AmineBenaddiGitHub/tiny-url"
-                        style={{
-                            textDecoration: 'none',
-                            color: 'black',
-                            borderRadius: '10px',
-                            width: '10em',
-                            backgroundColor: 'lightgray',
-                            textAlign: 'center',
-                            padding: '1.5em 0.5em',
-                            margin: '0.25em',
-                        }}
-                        onMouseEnter={(e) => {
-                            e.target.style.backgroundColor = 'silver';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.target.style.backgroundColor = 'lightgray';
-                        }}
-                    >
-                        Front-end repository
-                    </a>
-                    <a
-                        href="https://github.com/AmineBenaddiGitHub/tiny-url-functions"
-                        style={{
-                            textDecoration: 'none',
-                            color: 'black',
-                            borderRadius: '10px',
-                            width: '10em',
-                            backgroundColor: 'lightgray',
-                            textAlign: 'center',
-                            padding: '1.5em 0.5em',
-                            margin: '0.25em',
-                        }}
-                        onMouseEnter={(e) => {
-                            e.target.style.backgroundColor = 'silver';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.target.style.backgroundColor = 'lightgray';
-                        }}
-                    >
-                        Back-end repository
+                    <a href="https://github.com/AmineBenaddiGitHub/tiny-url" target="_blank">
+                        <img src={OctoCat} alt='octo cat' />
                     </a>
                 </div>
             </div>
