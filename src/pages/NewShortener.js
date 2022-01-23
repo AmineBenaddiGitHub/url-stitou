@@ -132,8 +132,17 @@ export default function NewShortener() {
                         alignItems: 'center',
                         margin: "15em 0 1em 0"
                     }}>
-                    <a href="https://github.com/AmineBenaddiGitHub/url-stitou" target="_blank" rel="noreferrer">
-                        <img src={OctoCat} alt='octo cat' />
+                    <a
+                        href="https://github.com/AmineBenaddiGitHub/url-stitou"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <img
+                            src={OctoCat}
+                            alt='octo cat'
+                            onMouseEnter={(e) => { e.target.style.filter = 'opacity(0.5)' }}
+                            onMouseLeave={(e) => { e.target.style.filter = 'opacity(1)' }}
+                        />
                     </a>
                 </div>
             </div>
