@@ -3,7 +3,8 @@
 import faunadb from 'faunadb';
 import parse from 'parse-url';
 import { customAlphabet } from 'nanoid';
-import { appHeaders, getFaunaError, isAuthorizedOrigin } from './utils'
+import { appHeaders, getFaunaError, isAuthorizedOrigin } from './utils';
+import * as Yup from 'yup';
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
@@ -34,22 +35,41 @@ async function handleRequest(request) {
       const shortId = nanoid();
       const { url } = await request.json();
 
-      await faunaClient.query(
-        Create(
-          Collection('URL_SHORTID'),
-          {
-            data: {
-              url: url, shortId: shortId, times: 0
-            }
-          }
-        )
-      );
+      const schema = Yup
+        .object()
+        .shape({
+          url: Yup.string().url()
+        });
 
-      const body = JSON.stringify({ url: url, shortId: shortId });
-      return new Response(body, {
-        headers: appHeaders(allowedOrigin),
-        status: 200
+      const isValid = schema.isValidSync({
+        url: url
       });
+
+      if (isValid) {
+        await faunaClient.query(
+          Create(
+            Collection('URL_SHORTID'),
+            {
+              data: {
+                url: url, shortId: shortId, times: 0
+              }
+            }
+          )
+        );
+        const body = JSON.stringify({ url: url, shortId: shortId });
+        return new Response(body, {
+          headers: appHeaders(allowedOrigin),
+          status: 200
+        });
+      } else {
+        return new Response(
+          JSON.stringify({ message: 'INVALID DATA' }),
+          {
+            headers: appHeaders(allowedOrigin),
+            status: 400
+          }
+        );
+      }
     } catch (error) {
       const faunaError = getFaunaError(error);
       return new Response(

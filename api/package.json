@@ -16,6 +16,7 @@
   "dependencies": {
     "faunadb": "4.4.1",
     "nanoid": "3.2.0",
-    "parse-url": "5.0.7"
+    "parse-url": "5.0.7",
+    "yup": "0.32.11"
   }
 }
